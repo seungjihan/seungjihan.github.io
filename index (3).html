@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seungji Han · 한승지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafbfc;
+    --bg-alt: #ffffff;
+    --ink: #14171c;
+    --ink-soft: #4a525e;
+    --ink-faint: #8b94a3;
+    --line: #e6e9ee;
+    --line-soft: #eef1f5;
+    --blue: #2563a8;
+    --blue-deep: #16365c;
+    --blue-soft: #eaf1f9;
+    --display: 'Inter Tight', 'Noto Sans KR', sans-serif;
+    --body: 'Inter Tight', 'Noto Sans KR', sans-serif;
+    --maxw: 880px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "tnum";
+  }
+  ::selection { background: var(--blue); color: #fff; }
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250,251,252,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: 0 32px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-name { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: var(--ink-soft); text-decoration: none; font-size: 13.5px;
+    font-weight: 500; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+  section { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+  .label {
+    font-family: var(--display); font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 26px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .label .ko { color: var(--ink-faint); letter-spacing: 0.04em; font-weight: 500; }
+  .hero { padding-top: 80px; padding-bottom: 56px; }
+  .hero-eyebrow {
+    font-family: var(--display); font-size: 12.5px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(44px, 8vw, 72px); line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+  .hero h1 .ko { font-weight: 500; color: var(--ink-faint); font-size: 0.5em; letter-spacing: -0.01em; margin-left: 14px; }
+  .hero-role {
+    font-size: clamp(16px, 2.3vw, 19px); color: var(--ink-soft);
+    max-width: 620px; margin-top: 26px; line-height: 1.62;
+  }
+  .hero-role strong { color: var(--ink); font-weight: 500; }
+  .hero-role .en { display: block; margin-top: 16px; color: var(--ink-faint); font-size: 0.92em; line-height: 1.6; }
+  .tl-desc .en { display: block; margin-top: 5px; color: var(--ink-faint); font-size: 13px; line-height: 1.5; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--blue-deep);
+    background: var(--blue-soft); padding: 6px 13px;
+    border-radius: 6px; font-family: var(--display);
+  }
+  .block { padding: 52px 0; }
+  .interests { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 14px; }
+  .interest-card {
+    background: var(--bg-alt); border: 1px solid var(--line);
+    border-radius: 10px; padding: 24px 22px; transition: border-color .2s, transform .2s;
+  }
+  .interest-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+  .interest-card h3 { font-family: var(--display); font-size: 16.5px; font-weight: 600; margin-bottom: 9px; letter-spacing: -0.01em; }
+  .interest-card h3 .ko { display: block; font-size: 13px; color: var(--ink-faint); font-weight: 500; margin-top: 2px; }
+  .interest-card p { font-size: 14px; color: var(--ink-soft); }
+  .doc-note { background: var(--blue-soft); border-radius: 10px; padding: 22px 24px; margin-top: 16px; }
+  .doc-note .dn-head { font-family: var(--display); font-size: 14px; font-weight: 600; color: var(--blue-deep); margin-bottom: 12px; }
+  .doc-note ul { list-style: none; }
+  .doc-note li { font-size: 14px; color: var(--blue-deep); padding-left: 18px; position: relative; margin-bottom: 7px; line-height: 1.55; }
+  .doc-note li::before { content: ""; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
+  .doc-note li:last-child { margin-bottom: 0; }
+  .tl-item {
+    display: grid; grid-template-columns: 130px 1fr; gap: 26px;
+    padding: 22px 0; border-top: 1px solid var(--line);
+  }
+  .tl-item:last-child { border-bottom: 1px solid var(--line); }
+  @media (max-width: 640px) { .tl-item { grid-template-columns: 1fr; gap: 5px; } }
+  .tl-period { font-family: var(--display); font-size: 13px; font-weight: 500; color: var(--ink-faint); padding-top: 3px; white-space: nowrap; }
+  .tl-role { font-size: 16.5px; font-weight: 600; margin-bottom: 2px; letter-spacing: -0.01em; }
+  .tl-role .ko { font-weight: 500; color: var(--ink-faint); font-size: 14px; }
+  .tl-org { font-size: 14.5px; color: var(--blue); font-weight: 500; margin-bottom: 8px; }
+  .tl-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+  .pub-list { display: flex; flex-direction: column; }
+  .pub {
+    display: grid; grid-template-columns: 56px 1fr; gap: 22px;
+    padding: 22px 0; border-top: 1px solid var(--line);
+  }
+  .pub:last-child { border-bottom: 1px solid var(--line); }
+  .pub-year { font-family: var(--display); font-weight: 600; font-size: 14px; color: var(--blue); padding-top: 2px; }
+  .pub-title { font-size: 16px; font-weight: 500; margin-bottom: 5px; letter-spacing: -0.005em; line-height: 1.45; }
+  .pub-venue { font-size: 14px; color: var(--ink-soft); }
+  .pub-venue em { color: var(--ink); font-style: italic; }
+  .pub-authors { font-size: 13px; color: var(--ink-faint); margin-top: 4px; }
+  .pub-tag { display: inline-block; font-size: 10.5px; font-weight: 600; font-family: var(--display); letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-top: 9px; }
+  .tag-journal { color: var(--blue-deep); background: var(--blue-soft); }
+  .tag-conf { color: var(--ink-soft); background: var(--line-soft); border: 1px solid var(--line); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; }
+  .skill-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .skill-card h3 { font-family: var(--display); font-size: 14px; font-weight: 600; color: var(--blue-deep); margin-bottom: 12px; letter-spacing: -0.005em; }
+  .skill-card ul { list-style: none; }
+  .skill-card li { font-size: 13.5px; color: var(--ink-soft); padding-left: 15px; position: relative; margin-bottom: 6px; line-height: 1.5; }
+  .skill-card li::before { content: ""; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; border-radius: 50%; background: var(--ink-faint); }
+  .skill-card li:last-child { margin-bottom: 0; }
+  .contact-block { background: var(--blue-deep); color: #fff; margin-top: 64px; padding: 72px 0 64px; }
+  .contact-block section { padding-left: 32px; padding-right: 32px; }
+  .contact-block .label { color: #8fb6e0; }
+  .contact-block .label .ko { color: rgba(255,255,255,0.5); }
+  .contact-block .label::after { background: rgba(255,255,255,0.18); }
+  .contact-block h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px,5vw,44px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .contact-block h2 .ko { display:block; font-size: 0.5em; font-weight: 500; color: rgba(255,255,255,0.6); margin-top: 8px; letter-spacing: 0; }
+  .contact-sub { color: rgba(255,255,255,0.7); font-size: 16px; max-width: 520px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+  .contact-links a {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: #fff; text-decoration: none; font-family: var(--display);
+    font-weight: 500; font-size: 14.5px; border: 1px solid rgba(255,255,255,0.28);
+    padding: 12px 20px; border-radius: 8px; transition: background .2s, border-color .2s;
+  }
+  .contact-links a:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.55); }
+  .cv-btn { background: #fff !important; color: var(--blue-deep) !important; border-color: #fff !important; }
+  .cv-btn:hover { background: #dce8f5 !important; }
+  footer { text-align: center; padding: 32px; font-size: 12.5px; color: var(--ink-faint); font-family: var(--display); }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Seungji Han · 한승지</span>
+    <ul class="nav-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <section>
+    <p class="hero-eyebrow">Ph.D. Candidate in City Planning · 도시계획학 박사과정</p>
+    <h1>Seungji Han<span class="ko">한승지</span></h1>
+    <p class="hero-role">
+      서울대학교 환경대학원에서 도시계획학을 공부하고 있습니다.
+      동아시아 미군기지 도시를 영토적 도시화(territorial urbanization)의 현장으로 보고,
+      군사화된 거버넌스가 도시 공간·노동·계획 실천에 미치는 영향을 연구합니다.
+      <span class="en">I study city planning at the Graduate School of Environmental Studies, Seoul National University.
+      My research approaches U.S. military base cities in East Asia as sites of territorial urbanization,
+      examining how militarized governance shapes urban space, labor, and planning practices.</span>
+    </p>
+    <div class="hero-meta">
+      <span class="chip">Military Base Cities · 기지도시</span>
+      <span class="chip">Urban History · 도시사</span>
+      <span class="chip">Territorial Urbanization · 영토적 도시화</span>
+    </div>
+  </section>
+</header>
+
+<section id="research" class="block reveal">
+  <p class="label">Research <span class="ko">연구</span></p>
+  <div class="interests">
+    <div class="interest-card">
+      <h3>Military Base Cities<span class="ko">미군기지 도시</span></h3>
+      <p>동아시아 미군기지 도시를 영토적 도시화의 현장으로 분석하고, 군사화된 거버넌스가 도시 공간을 형성하는 방식을 탐구합니다.</p>
+    </div>
+    <div class="interest-card">
+      <h3>Labor &amp; Planning<span class="ko">노동과 계획</span></h3>
+      <p>군사화된 도시 환경 속 노동 경험과 계획 실천, 제도적 기억이 교차하는 지점을 연구합니다.</p>
+    </div>
+    <div class="interest-card">
+      <h3>Urban History<span class="ko">도시사</span></h3>
+      <p>도시의 역사와 기억에 관심을 갖고, 다양한 사료를 통해 역사적 변천과 맥락을 재구성합니다.</p>
+    </div>
+    <div class="interest-card">
+      <h3>Comparative Urbanism<span class="ko">비교 도시 연구</span></h3>
+      <p>한국과 필리핀 사례를 가로지르는 다중스케일·비교 도시 분석으로 도시 변형의 역사를 읽습니다.</p>
+    </div>
+  </div>
+  <div class="doc-note">
+    <div class="dn-head">Doctoral Research (in progress) · 박사학위 연구 (진행 중)</div>
+    <ul>
+      <li>U.S. military base cities in East Asia as sites of territorial urbanization · 영토적 도시화의 현장으로서 동아시아 미군기지 도시</li>
+      <li>Militarized governance and its effects on urban space, labor, and planning practices · 군사화된 거버넌스가 도시 공간·노동·계획 실천에 미치는 영향</li>
+      <li>Comparative cases: South Korea (Yongsan, Dongducheon, Pyeongtaek) and the Philippines (Clark, Subic) · 비교 사례: 한국(용산·동두천·평택)과 필리핀(클락·수빅)</li>
+      <li>Methods: archival research, oral history interviews, comparative urban analysis · 방법: 아카이브 연구, 구술사 인터뷰, 비교 도시 분석</li>
+    </ul>
+  </div>
+</section>
+
+<section id="education" class="block reveal">
+  <p class="label">Education <span class="ko">학력</span></p>
+  <div>
+    <div class="tl-item">
+      <div class="tl-period">2024 —</div>
+      <div>
+        <div class="tl-role">Ph.D. Candidate in City Planning <span class="ko">도시계획학 박사과정</span></div>
+        <div class="tl-org">Seoul National University · 서울대학교</div>
+        <div class="tl-desc">동아시아 미군기지 도시와 영토적 도시화에 관한 박사학위 연구를 진행하고 있습니다.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-period">2023</div>
+      <div>
+        <div class="tl-role">M.A. in Media &amp; Cultural Studies <span class="ko">미디어문화연구 전공, 문화학 석사</span></div>
+        <div class="tl-org">Graduate School of Communication, Yonsei University · 연세대학교 커뮤니케이션대학원</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-period">2021</div>
+      <div>
+        <div class="tl-role">B.A. in Film &amp; Moving Image and Cultural Contents <span class="ko">영상영화학 및 문화콘텐츠학 학사</span></div>
+        <div class="tl-org">Konkuk University · 건국대학교</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="block reveal">
+  <p class="label">Research Experience <span class="ko">연구 경력</span></p>
+  </div>
+    <div class="tl-item">
+      <div class="tl-period">2026.03 — (in progress)</div>
+      <div>
+        <div class="tl-role">Co-Researcher <span class="ko">공동연구원</span></div>
+        <div class="tl-org">2026 Seoul Oral History: Haebangchon as a Living Sphere of Yongsan Garrison · 서울역사편찬원</div>
+        <div class="tl-desc">구술사 프로젝트의 인터뷰 설계에 참여하고, 용산기지 생활권으로서 해방촌의 일상사를 채록하고 있습니다.<span class="en">Contributing to the design of interview frameworks and documenting the everyday history of Haebangchon as a living sphere of the Yongsan Garrison.</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-period">2026.01 — 02</div>
+      <div>
+        <div class="tl-role">Co-Researcher <span class="ko">공동연구원</span></div>
+        <div class="tl-org">Party Democracy at the Local Level: Seongbuk-gu · 더불어민주당 성북구지역위원회</div>
+        <div class="tl-desc">성북구의 정치지리적 분석을 수행하고, 지역 단위 정당 조직이 일상 정치의 거점으로 기능하는 방식을 당원 심층 인터뷰·설문 조사를 통해 연구했습니다.<span class="en">Conducted a political-geographical analysis of Seongbuk-gu, examining how district-level party organization functions as a hub of everyday political practice, based on in-depth interviews and surveys with party members.</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-period">2025.04 —</div>
+      <div>
+        <div class="tl-role">Co-Researcher <span class="ko">공동연구원</span></div>
+        <div class="tl-org">2025 Seoul Life and Culture Data Survey: Bangi-dong · 서울역사박물관</div>
+        <div class="tl-desc">방이 1동·2동의 일상생활과 문화실천을 비교 분석한 장을 집필하고, 도시 생활·문화 데이터의 질적 분석을 통해 동네 단위 사회문화적 차이를 규명했습니다.<span class="en">Authored a comparative chapter on everyday life and cultural practices in Bangi 1-dong and 2-dong, identifying neighborhood-level socio-cultural differentiation through qualitative analysis of urban life and culture data.</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-period">2025.03 — 11</div>
+      <div>
+        <div class="tl-role">Co-Researcher <span class="ko">공동연구원</span></div>
+        <div class="tl-org">2025 Seoul Oral History: Voices of the Yongsan Garrison · 서울역사편찬원</div>
+        <div class="tl-desc">구술사 프로젝트의 인터뷰 설계에 참여하고, 용산기지에서 일한 한국인 노동자들의 노동 경험과 제도적 기억, 일상을 구술 인터뷰로 기록·분석했습니다.<span class="en">Contributed to interview design and conducted oral history interviews with Korean workers at the Yongsan Garrison, documenting their labor experience, institutional memory, and everyday life.</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-period">2024.12 — 2025.05</div>
+      <div>
+        <div class="tl-role">Researcher &amp; Writer <span class="ko">연구·집필</span></div>
+        <div class="tl-org">Evaluation and Commentary on Records Series 1 · 서울기록원</div>
+        <div class="tl-desc">「철저한 계획도시, 여의도의 광장과 공원」 장을 집필하여 국가 계획 문서와 아카이브를 통해 여의도의 역사적 변형을 분석했습니다.<span class="en">Authored a chapter on Yeouido as a thoroughly planned city—its plazas and parks—analyzing the area's historical transformation through state planning documents and archival materials.</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-period">2024.03 — 11</div>
+      <div>
+        <div class="tl-role">Co-Researcher <span class="ko">공동연구원</span></div>
+        <div class="tl-org">2024 Seoul Oral History: Korean Firefighters at Yongsan Garrison · 서울역사편찬원</div>
+        <div class="tl-desc">용산기지에서 근무한 전직 한국인 소방관들의 구술사 인터뷰를 수행하고, 전사·서사 구조화·아카이브 준비 작업에 기여했습니다.<span class="en">Conducted oral history interviews with former Korean firefighters at the Yongsan Garrison and contributed to transcription, narrative structuring, and archival preparation.</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-period">2023.07 — 12</div>
+      <div>
+        <div class="tl-role">Co-Researcher <span class="ko">공동연구원</span></div>
+        <div class="tl-org">Buan Salt Workers · 부안군 문화재단</div>
+        <div class="tl-desc">곰소만 염전 노동자들의 노동 관행·생산 기술·일상을 현장 연구하고, 염전 노동 공동체의 사회공간적 형성을 분석했습니다.<span class="en">Conducted field research on the labor practices, production techniques, and daily lives of salt workers in the Gomso Bay salt fields, analyzing the socio-spatial formation of the salt-field labor community.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications" class="block reveal">
+  <p class="label">Publications &amp; Presentations <span class="ko">논문·발표</span></p>
+  <div class="pub-list">
+    <div class="pub">
+      <div class="pub-year">2026</div>
+      <div>
+        <div class="pub-title">A Small World within Seoul: Voices from Yongsan Garrison</div>
+        <div class="pub-venue"><em>The 2026 Spring Conference of the Korean Oral History Association</em>, May 2026</div>
+        <div class="pub-authors">with Taehyun Ha and Seungji Han</div>
+        <span class="pub-tag tag-conf">Conference</span>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-year">2026</div>
+      <div>
+        <div class="pub-title">Reading East Asia Thoughtfully</div>
+        <div class="pub-venue"><em>The 2026 Spring Conference of the Korean Association of Space and Environment Research</em>, May 2026</div>
+        <div class="pub-authors">with Yoonji Song, Jinseo Park, Didi Kyoung-ae Han, and Seungji Han</div>
+        <span class="pub-tag tag-conf">Conference</span>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">How did the Square Become a Park? — A Multiscalar Reconstruction of Yeouido Square's Parkification in Seoul</div>
+        <div class="pub-venue"><em>Korean Journal of Urban History</em>, no. 39 (2025), pp. 119–157</div>
+        <div class="pub-authors">DOI: 10.22345/kjuh.2025.07.39.119</div>
+        <span class="pub-tag tag-journal">Journal Article</span>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">Temporality in Spatial Planning: Rethinking the One-Day Life Zone through the Lens of Mobility and Speed</div>
+        <div class="pub-venue"><em>Space and Environment</em>, vol. 35, no. 1 (2025), pp. 16–61</div>
+        <div class="pub-authors">with Yilsoon Paek · DOI: 10.19097/kaser.2025.35.1.16</div>
+        <span class="pub-tag tag-journal">Journal Article</span>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">Managing Sex Workers and U.S. Military Camp Towns in South Korea: Sexualized Spaces and Bio-Disciplinary Infrastructure</div>
+        <div class="pub-venue"><em>The 11th East Asian Conference in Alternative Geography</em>, Fukuoka, Japan, February 2025</div>
+        <span class="pub-tag tag-conf">Conference</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="block reveal">
+  <p class="label">Research Skills <span class="ko">연구 역량</span></p>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>Qualitative Research · 질적 연구</h3>
+      <ul>
+        <li>Archival research &amp; document analysis</li>
+        <li>In-depth interviews &amp; focus groups</li>
+        <li>Oral history interviews &amp; transcription</li>
+        <li>Qualitative coding &amp; narrative analysis</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <h3>Urban &amp; Spatial Analysis · 도시·공간 분석</h3>
+      <ul>
+        <li>Historical &amp; comparative analysis of urban transformation</li>
+        <li>Multi-scalar approaches to urban space</li>
+        <li>Comparative neighborhood &amp; case-study analysis</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <h3>Quantitative · 양적 분석</h3>
+      <ul>
+        <li>Analysis of urban &amp; cultural survey data</li>
+        <li>Cross-case comparative analysis</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <h3>Academic Practice · 학술 실천</h3>
+      <ul>
+        <li>Seminar presentations &amp; academic writing</li>
+        <li>Preparation of research &amp; seminar materials</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="contact-block reveal" id="contact">
+  <section>
+    <p class="label">Contact <span class="ko">연락처</span></p>
+    <div class="contact-links">
+      <a href="mailto:seungji@snu.ac.kr">✉ seungji@snu.ac.kr</a>
+      <a href="tel:+821083810154">☎ +82 10 8381 0154</a>
+      <a href="https://scholar.google.com/citations?user=7tZrpwcAAAAJ&hl=ko" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="CV_Seungji_Han.pdf" download class="cv-btn">↓ Download CV (PDF)</a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  © 2026 Seungji Han · 한승지
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
